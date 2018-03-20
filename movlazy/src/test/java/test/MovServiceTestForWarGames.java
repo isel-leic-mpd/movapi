@@ -38,7 +38,7 @@ import static util.Queries.filter;
 import static util.Queries.skip;
 
 
-public class MovServiceTest {
+public class MovServiceTestForWarGames {
 
     @Test
     public void testSearchMovieInSinglePage() {
