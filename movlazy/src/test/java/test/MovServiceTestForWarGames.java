@@ -60,7 +60,9 @@ public class MovServiceTestForWarGames {
         Iterable<SearchItem> movs = movapi.search("candle");
         assertEquals(0, count[0]);
         SearchItem candleshoe =
-                filter(movs, m -> m.getTitle().equals("Candleshoe"))
+                filter(
+                        m -> m.getTitle().equals("Candleshoe"),
+                        movs)
                 .iterator()
                 .next();
         assertEquals(2, count[0]); // Found on 2nd page
@@ -99,7 +101,9 @@ public class MovServiceTestForWarGames {
         /**
          * Iterable<SearchItem> is Lazy and without cache.
          */
-        SearchItem warGames = filter(vs, m -> m.getTitle().equals("WarGames"))
+        SearchItem warGames = filter(
+                    m -> m.getTitle().equals("WarGames"),
+                    vs)
                 .iterator()
                 .next();
         assertEquals(3, count[0]); // 1 more request for 1st page

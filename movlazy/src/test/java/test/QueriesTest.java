@@ -43,7 +43,7 @@ public class QueriesTest {
     @Test
     public void testIterate() {
         Iterable<Integer> expected = asList(1, 2, 3, 4, 5, 6, 7);
-        Iterable<Integer> nrs = takeWhile(iterate(0, n -> ++n), n -> n < 8);
+        Iterable<Integer> nrs = takeWhile(n -> n < 8, iterate(0, n -> ++n));
         assertIterableEquals(expected, nrs);
         forEach(nrs, System.out::println);
     }
@@ -55,7 +55,7 @@ public class QueriesTest {
         Predicate<String> p = s -> s == null || s.length() == 3;
         Iterable<String> expected = asList("ola", null, "abc", null);
         // Act
-        Iterable<String> actual = filter(strs, p);
+        Iterable<String> actual = filter(p, strs);
         // Assert
         assertIterableEquals(expected, actual);
     }
@@ -64,14 +64,14 @@ public class QueriesTest {
     public void testTakWhile() {
         Iterable<Integer> nrs = asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 17, 31);
         Iterable<Integer> expected = asList(1, 2, 3, 4, 5, 6, 7);
-        Iterable<Integer> actual = takeWhile(nrs, n -> n < 8);
+        Iterable<Integer> actual = takeWhile(n -> n < 8, nrs);
         assertIterableEquals(expected, actual);
     }
     @Test
     public void testTakFlatMap() {
         Iterable<Integer> nrs = asList(2, 5, 8, 11);
         Iterable<Integer> expected = asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        Iterable<Integer> actual = flatMap(nrs, n -> asList(n - 1, n, n + 1));
+        Iterable<Integer> actual = flatMap(n -> asList(n - 1, n, n + 1), nrs);
         assertIterableEquals(expected, actual);
     }
 }

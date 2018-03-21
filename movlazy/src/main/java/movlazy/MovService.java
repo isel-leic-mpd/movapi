@@ -24,10 +24,7 @@ import movlazy.model.Actor;
 import movlazy.model.CastItem;
 import movlazy.model.SearchItem;
 import movlazy.model.Movie;
-import util.IRequest;
-import util.Queries;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,26 +51,22 @@ public class MovService {
         this.movWebApi = movWebApi;
     }
 
-    public MovService(IRequest req) {
-        this.movWebApi = new MovWebApi(req);
-    }
-
     public Iterable<SearchItem> search(String name) {
         return
         map(                     // Iterable<SearchItem>
+            this::parseSearchItemDto,
             flatMap(             // Iterable<SearchItemDto>
+                movs -> of(movs),
                 takeWhile(       // Iterable<SearchItemDto[]>
+                    movs -> movs.length != 0,
                     map(         // Iterable<SearchItemDto[]>
+                        page -> movWebApi.search(name, page),
                         iterate( // Iterable<Integer>
                                 0,
-                                prev -> ++prev),
-                        page -> movWebApi.search(name, page)),
-                    movs -> movs.length != 0),
-                movs -> of(movs)),
-            this::searchItemFromDto);
+                                prev -> ++prev)))));
     }
 
-    private SearchItem searchItemFromDto(SearchItemDto dto) {
+    private SearchItem parseSearchItemDto(SearchItemDto dto) {
         return new SearchItem(
                 dto.getId(),
                 dto.getTitle(),
@@ -98,15 +91,8 @@ public class MovService {
 
     public List<CastItem> getMovieCast(int movId) {
         return cast.computeIfAbsent(movId, id -> {
-            return Collections.EMPTY_LIST;
+            throw new UnsupportedOperationException();
         });
-    }
-
-
-    private CastItem castFromDto(
-            int movieId,
-            CastItemDto dto) {
-        throw new UnsupportedOperationException();
     }
 
     public Actor getActor(int actorId, String name) {
@@ -114,7 +100,7 @@ public class MovService {
     }
 
     public Iterable<SearchItem> getActorCreditsCast(int actorId) {
-        return Queries.empty();
+        throw new UnsupportedOperationException();
     }
 
 }

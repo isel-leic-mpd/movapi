@@ -51,7 +51,7 @@ public class MovWebApi {
      * E.g. https://api.themoviedb.org/3/search/movie?api_key=***************&query=war+games
      */
     public SearchItemDto[] search(String title, int page) {
-        return new SearchItemDto[0];
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -65,7 +65,7 @@ public class MovWebApi {
      * E.g. https://api.themoviedb.org/3/movie/860/credits?api_key=***************
      */
     public CastItemDto[] getMovieCast(int movieId) {
-        return new CastItemDto[0];
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -79,6 +79,6 @@ public class MovWebApi {
      * E.g. https://api.themoviedb.org/3/person/4756/movie_credits?api_key=***************
      */
     public SearchItemDto[] getPersonCreditsCast(int personId) {
-        return new SearchItemDto[0];
+        throw new UnsupportedOperationException();
     }
 }

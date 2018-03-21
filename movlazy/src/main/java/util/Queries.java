@@ -47,8 +47,8 @@ public class Queries {
      * src Iterable that match the given predicate.
      */
     public static <T> Iterable<T> filter(
-            Iterable<T> src,
-            Predicate<T> p) {
+            Predicate<T> p,
+            Iterable<T> src) {
         return () -> new FilterIterator<>(src, p);
     }
 
@@ -58,8 +58,8 @@ public class Queries {
      * the src Iterable.
      */
     public static <T, R> Iterable<R> map(
-            Iterable<T> src,
-            Function<T, R> mapper) {
+            Function<T, R> mapper,
+            Iterable<T> src) {
         return () -> new MapIterator<>(src, mapper);
     }
 
@@ -143,8 +143,8 @@ public class Queries {
      * Returns a new Iterable consisting of the longest prefix of elements
      * taken from teh src Iterable that match the given predicate.
      */
-    public static <T> Iterable<T> takeWhile(Iterable<T> src, Predicate<T> p) {
-        return empty();
+    public static <T> Iterable<T> takeWhile(Predicate<T> p, Iterable<T> src) {
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -161,9 +161,9 @@ public class Queries {
      * }</pre>
      */
     public static <T, R> Iterable<R> flatMap(
-            Iterable<T> src,
-            Function<T, Iterable<R>> mapper) {
-        return empty();
+            Function<T, Iterable<R>> mapper,
+            Iterable<T> src) {
+        throw new UnsupportedOperationException();
     }
 
     /**
