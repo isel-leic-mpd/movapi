@@ -29,15 +29,17 @@ import util.IRequest;
  */
 
 public class MovWebApi {
-    /*
+    /**
      * Constants
+     *
+     * To format messages URLs use {@link java.text.MessageFormat#format(String, Object...)} method.
      */
     private static final String MOVIE_DB_HOST = "https://api.themoviedb.org/3/";
-    private static final String MOVIE_DB_SEARH = "search/movie?api_key=%s&query=%s&page=%s";
-    private static final String MOVIE_DB_MOVIE = "movie/%s?api_key=%s";
-    private static final String MOVIE_DB_MOVIE_CREDITS = "movie/%s/credits?api_key=%s";
-    private static final String MOVIE_DB_PERSON = "person/%s?api_key=%s";
-    private static final String MOVIE_DB_PERSON_CREDITS = "person/%s/movie_credits?api_key=%s";
+    private static final String MOVIE_DB_SEARCH = "search/movie?api_key={0}&query=&page={1}";
+    private static final String MOVIE_DB_MOVIE = "movie/{0}?api_key={1}";
+    private static final String MOVIE_DB_MOVIE_CREDITS = "movie/{0}/credits?api_key={1}";
+    private static final String MOVIE_DB_PERSON = "person/{0}?api_key={0}";
+    private static final String MOVIE_DB_PERSON_CREDITS = "person/{0}/movie_credits?api_key={0}";
     private static final String API_KEY = "************************";
 
     /*
