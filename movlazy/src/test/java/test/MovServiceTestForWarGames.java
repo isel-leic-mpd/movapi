@@ -18,19 +18,15 @@
 package test;
 
 import com.google.common.util.concurrent.RateLimiter;
+import movlazy.MovService;
+import movlazy.MovWebApi;
 import movlazy.dto.SearchItemDto;
 import movlazy.model.CastItem;
 import movlazy.model.SearchItem;
 import org.junit.jupiter.api.Test;
-import movlazy.MovWebApi;
 import util.HttpRequest;
 import util.IRequest;
-import movlazy.MovService;
 import util.Queries;
-
-import java.io.InputStream;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

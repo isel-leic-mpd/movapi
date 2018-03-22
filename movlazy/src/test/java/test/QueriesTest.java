@@ -18,7 +18,6 @@
 package test;
 
 import org.junit.jupiter.api.Test;
-import util.Queries;
 
 import java.util.function.Predicate;
 

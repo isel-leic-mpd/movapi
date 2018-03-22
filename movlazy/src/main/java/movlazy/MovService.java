@@ -17,23 +17,21 @@
 
 package movlazy;
 
-import movlazy.dto.CastItemDto;
 import movlazy.dto.MovieDto;
 import movlazy.dto.SearchItemDto;
 import movlazy.model.Actor;
 import movlazy.model.CastItem;
-import movlazy.model.SearchItem;
 import movlazy.model.Movie;
+import movlazy.model.SearchItem;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Arrays.stream;
-import static util.Queries.*;
 import static util.Queries.flatMap;
 import static util.Queries.iterate;
 import static util.Queries.map;
+import static util.Queries.of;
 import static util.Queries.takeWhile;
 
 /**
