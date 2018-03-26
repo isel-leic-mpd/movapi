@@ -36,11 +36,10 @@ public class MovWebApi {
      */
     private static final String MOVIE_DB_HOST = "https://api.themoviedb.org/3/";
     private static final String MOVIE_DB_SEARCH = "search/movie?api_key={0}&query=&page={1}";
-    private static final String MOVIE_DB_MOVIE = "movie/{0}?api_key={1}";
-    private static final String MOVIE_DB_MOVIE_CREDITS = "movie/{0}/credits?api_key={1}";
-    private static final String MOVIE_DB_PERSON = "person/{0}?api_key={0}";
-    private static final String MOVIE_DB_PERSON_CREDITS = "person/{0}/movie_credits?api_key={0}";
-    private static final String API_KEY = "************************";
+    private static final String MOVIE_DB_MOVIE = "movie/{1}?api_key={0}";
+    private static final String MOVIE_DB_MOVIE_CREDITS = "movie/{1}/credits?api_key={0}";
+    private static final String MOVIE_DB_PERSON = "person/{1}?api_key={0}";
+    private static final String MOVIE_DB_PERSON_CREDITS = "person/{1}/movie_credits?api_key={0}";
 
     /*
      * Constructors
