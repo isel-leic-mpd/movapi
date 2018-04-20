@@ -25,14 +25,9 @@ import movlazy.model.Movie;
 import movlazy.model.SearchItem;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import static util.Queries.flatMap;
-import static util.Queries.iterate;
-import static util.Queries.map;
-import static util.Queries.of;
-import static util.Queries.takeWhile;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * @author Miguel Gamboa
@@ -42,26 +37,15 @@ public class MovService {
 
     private final MovWebApi movWebApi;
     private final Map<Integer, Movie> movies = new HashMap<>();
-    private final Map<Integer, List<CastItem>> cast = new HashMap<>();
+    private final Map<Integer, Supplier<Stream<CastItem>>> cast = new HashMap<>();
     private final Map<Integer, Actor> actors = new HashMap<>();
 
     public MovService(MovWebApi movWebApi) {
         this.movWebApi = movWebApi;
     }
 
-    public Iterable<SearchItem> search(String name) {
-        return
-        map(                     // Iterable<SearchItem>
-            this::parseSearchItemDto,
-            flatMap(             // Iterable<SearchItemDto>
-                movs -> of(movs),
-                takeWhile(       // Iterable<SearchItemDto[]>
-                    movs -> movs.length != 0,
-                    map(         // Iterable<SearchItemDto[]>
-                        page -> movWebApi.search(name, page),
-                        iterate( // Iterable<Integer>
-                                0,
-                                prev -> ++prev)))));
+    public Supplier<Stream<SearchItem>> search(String name) {
+        throw new UnsupportedOperationException();
     }
 
     private SearchItem parseSearchItemDto(SearchItemDto dto) {
@@ -83,11 +67,11 @@ public class MovService {
                     mov.getOverview(),
                     mov.getVoteAverage(),
                     mov.getReleaseDate(),
-                    () -> this.getMovieCast(id));
+                    this.getMovieCast(id));
         });
     }
 
-    public List<CastItem> getMovieCast(int movId) {
+    public Supplier<Stream<CastItem>> getMovieCast(int movId) {
         return cast.computeIfAbsent(movId, id -> {
             throw new UnsupportedOperationException();
         });
